@@ -19,7 +19,7 @@
 * localStorage
 
 ## Link
-git@github.com:francisca-hernandez/weather-dashboard.git
+https://github.com/francisca-hernandez/weather-dashboard.git
 
 ##Screenshot
 ![](/assets/Screenshot%202022-11-08%20101045.png)
