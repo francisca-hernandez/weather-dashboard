@@ -22,7 +22,7 @@
 git@github.com:francisca-hernandez/weather-dashboard.git
 
 ##Screenshot
-![](Screenshot 2022-11-08 101045.png)
-(Screenshot 2022-11-08 101045.png)
+![]()
+
 
 
