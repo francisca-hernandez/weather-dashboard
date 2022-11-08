@@ -44,7 +44,7 @@ $(document).ready(function() {
         })
     };
 
-    // Search for the forecast of and display results
+    // Search for forecast of and display results
     function forecast(input) {
         let apiKey = "cda0734d46f3ec29600ebac5178a0156";
         let forecastURL = "https://api.openweathermap.org/data/2.5/forecast?appid=" + apiKey + "&q=" + input;
@@ -128,23 +128,22 @@ $(document).ready(function() {
     let retrCities = JSON.parse(localStorage.getItem("cities-searched"));
     console.log(retrCities);
 
-    // As long as there are cities available in localStorage, then 
+   
     if (retrCities === null) {
         console.log("null");
     } else {
-        // For loop to take each object and create a button into the city tile column
+        // Takes each object and create a button into the city tile column
         for (let i = 0; i < retrCities.length; i++) {
             let cityTileBtnEl = $("<button>").attr("class", "city-results-tile");
             
             cityTileBtnEl.text(retrCities[i].cityName).attr("id", retrCities[i].cityName);
-            $("#city-tile").append(cityTileBtnEl);
+           // $("#city-tile").append(cityTileBtnEl);
         }
         
         // Takes the most recent city located in recent-search in localStorage and sets new variable
         let recentCity = localStorage.getItem("recent-search");
-        // Then takes that most recent city and runs the citySearch function
+        // Then takes city and runs the citySearch function/ forecast 
         citySearch(recentCity);
-        // And the 5 day forecast function
         forecast(recentCity);
     }
 
@@ -177,12 +176,11 @@ $(document).ready(function() {
         $("#search-field").val("");
     })
 
-    // When a city tile is clicked, then we run that city in the search functions
+    // When a city tile is clicked, Then city is ran in the search functions
     $(document).on("click", ".city-results-tile", function(event) {
 
-        // Function to search for the current weather
+        // Function to search for the current weather and forecast
         citySearch(this.id);
-        // Function to search for the 5 day forecast
         forecast(this.id);
 
         // Sets the last searched city into localStorage
