@@ -1,27 +1,30 @@
-// //global Arrays
-// const apiKey = 'e045f64f4cd0813aba91c0138b34adad';
-// const searchBtn = document.querySelector('#search-btn');
-// const searchInput = document.querySelector('#city');
-// const current = document.querySelector('#current');
-// const future = document.querySelector('#future');
-// let weatherArray = [];
-
-
 // empty city arrays
 let cities = [];
+
 // global arrays
-let cityFormEl = document.querySelector('#city-search');
-let citySearchInputEl = document.querySelector('#city-searched');
-let cityInputEl = document.querySelector('#city');
-let forecastTitle = document.querySelector('#forecast');
-let forecastContainerEl = document.querySelector('#fiveday');
-let pastSearchButtonEl = document.querySelector('#past-search');
-let weatherContainerEl = document.querySelector('#current-weather');
-let uviEl = document.querySelector('#uv-index')
+const searchBtn = document.querySelector('#search-btn');
+const userinput = document.querySelector('#city-search');
+const present = document.querySelector('#current-weather');
+// const future = document.querySelector('#
+// const past  = document.querySelector('#
 
-const API_KEY = 'e045f64f4cd0813aba91c0138b34adad';
-let fiveDay = [];
+const apiKey = 'ea13ae0f55f1f14f2b43391b0a36bafa';
 
-const showNextFive = function(city) {
+let searchArr = [];
 
-    let apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + API_KEY + "&units=imperial";
+function search() {
+
+    // const currentCity =`https://api.openweathermap.org/geo/1.0/direct?q=${userInput.value}&limit=5&appid`; 
+
+    let apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + citysearch + "&appid=" + apiKey + "&units=imperial";
+
+    fetch(apiUrl)
+           .then(response => response.json())
+            .then(data => {
+                getWeather(data[0].lat, data[0].lon, data[0].name)
+            });
+
+            const form = function(event) {
+                event.preventDefault();
+              
+         
