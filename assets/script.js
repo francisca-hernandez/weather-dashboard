@@ -6,19 +6,19 @@ let citySearch = document.querySelector("#city-search")
 const currentWeatherEl = document.querySelector("#curweather-container")
 const currentCity = document.querySelector('.current-city')
 
-let tempEl = document.querySelector(".temp")
-let humidityEl = document.querySelector(".humidity")
-let windEl = document.querySelector(".wind")
-let iconEl = document.querySelector('.icon')
+// let tempEl = document.querySelector(".temp")
+// let humidityEl = document.querySelector(".humidity")
+// let windEl = document.querySelector(".wind")
+// let iconEl = document.querySelector('.icon')
 
-let tempForeEl = document.querySelector(".temp-forecast")
-let humidityForeEl = document.querySelector(".humidity-forecast")
-let windForeEl = document.querySelector(".wind-forecast")
+// let tempForeEl = document.querySelector(".temp-forecast")
+// let humidityForeEl = document.querySelector(".humidity-forecast")
+// let windForeEl = document.querySelector(".wind-forecast")
 
 const forecastEl = document.querySelector('.date-i')
 
 // const API_Key = 'e045f64f4cd0813aba91c0138b34adad'
-const API_Key = '3124a0b815fd42bc0bf779711fb207c0'
+var APIKey = '3124a0b815fd42bc0bf779711fb207c0'
 
 
 // // GIVEN a weather dashboard with form inputs
@@ -32,13 +32,16 @@ const searchCityForm = (event) => {
 
     if (cityName) {
         userInput.value = "";
-        var apiURL = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${API_Key}`;
+        var apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&limit=1&appid=${APIKey}`;
         fetch(apiURL).then(data => data.json())
         
         .then(data => {
-            let { lat, lon } = data;
+            console.log(data)
 
-            let url = `http://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&units=imperial&appid=${API_Key}`;
+            let { lat, lon } = data;
+        
+
+            let url = `http://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&units=imperial&appid=${APIKey}`;
 
             fetch(url).then(response => {
                 return response.json();
@@ -46,7 +49,7 @@ const searchCityForm = (event) => {
 
         
                 .then(data => {
-                    let forecast = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${API_Key}`;
+                    let forecast = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${APIKey}`;
                     fetch(forecast).then(response => {
                         return response.json();
                     })
@@ -76,9 +79,9 @@ let displayCurrentWeather = (data) => {
     // set DOM elements from API
     currentCity.textContent = `${data.city.name} (${new Date(data.list[0].dt*1000).toDateString()})`;
     currentCity.innerHTML += `<img src="http://openweathermap.org/img/w/${data.list[0].weather[0].icon}.png">`;
-    tempEl.textContent = temp;
-    humidityEl.textContent = humidity;
-    windEl.textContent = data.list[0].wind.speed;
+    // tempEl.textContent = temp;
+    // humidityEl.textContent = humidity;
+    // windEl.textContent = data.list[0].wind.speed;
 }
 //step 3:
 // WHEN I view future weather conditions for that city
@@ -98,12 +101,12 @@ let displayFutureWeather = (data) => {
 
 };
 
-// //save to localStorage
-// let saveCity = () => {
-//     localStorage.setItem('city', JSON.stringify(cities));
-// };
+//save to localStorage
+let saveCity = () => {
+    localStorage.setItem('city', JSON.stringify(cities));
+};
 
-// searchForm.addEventListener("submit", searchCityForm);
+// searchForm("submit", searchCityForm);
 
 
 
