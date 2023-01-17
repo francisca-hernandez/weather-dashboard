@@ -1,25 +1,21 @@
 //global variables
-let searchForm = document.querySelector("#search-btn")
+let searchForm = document.querySelector("#search")
 const userInput = document.querySelector("#city-name")
 let citySearch = document.querySelector("#city-search")
 
-const currentWeatherEl = document.querySelector("#curweather-container")
+const currentWeatherEl = document.querySelector("#current-weather")
 const currentCity = document.querySelector('.current-city')
 
-// let tempEl = document.querySelector(".temp")
-// let humidityEl = document.querySelector(".humidity")
-// let windEl = document.querySelector(".wind")
-// let iconEl = document.querySelector('.icon')
+let temp = document.querySelector(".temp")
+let humidity = document.querySelector(".humidity")
+let wind = document.querySelector(".wind")
+let iconEl = document.querySelector('.icon')
 
-// let tempForeEl = document.querySelector(".temp-forecast")
-// let humidityForeEl = document.querySelector(".humidity-forecast")
-// let windForeEl = document.querySelector(".wind-forecast")
+const forecastEl = document.querySelector('.date-future')
 
-const forecastEl = document.querySelector('.date-i')
-
-// const API_Key = 'e045f64f4cd0813aba91c0138b34adad'
-var APIKey =  "f64f9e2d4fda40afd330c539b14a2d45"
-
+//API Key Variable
+//var APIKey = '3124a0b815fd42bc0bf779711fb207c0'
+var APIKey = "f64f9e2d4fda40afd330c539b14a2d45"
 
 // // GIVEN a weather dashboard with form inputs
 // // step 1:
@@ -39,6 +35,7 @@ const searchCityForm = (event) => {
             console.log(data)
 
             let { lat, lon } = data.coord;
+        
 
             let url = `http://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&units=imperial&appid=${APIKey}`;
 
@@ -47,27 +44,28 @@ const searchCityForm = (event) => {
             })
 
         
-            .then(data => {
-                let forecast = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${APIKey}`;
-                fetch(forecast).then(response => {
-                    return response.json();
-                })
-                    .then(data => {
-                        d = data;
-                        displayCurrentWeather(data);
-                        displayFutureWeather(data);
-                     
+                .then(data => { 
+                    console.log(data)
+
+                    let forecast = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${APIKey}`;
+                    fetch(forecast).then(response => {
+                        return response.json();
                     })
-                
-            });
+                        .then(data => {
+                            d = data;
+                            displayCurrentWeather(data);
+                            displayFutureWeather(data);
+                         
+                        })
+                    
+                });
 
-    });
-    
-} else {
-    alert("Please enter a City Name")
-}
+        });
+        
+    } else {
+        alert("Please enter a City Name")
+    }
 };
-
 
     // // step 2:
 // // WHEN I view current weather conditions for that city
@@ -79,9 +77,9 @@ let displayCurrentWeather = (data) => {
     // set DOM elements from API
     currentCity.textContent = `${data.city.name} (${new Date(data.list[0].dt*1000).toDateString()})`;
     currentCity.innerHTML += `<img src="http://openweathermap.org/img/w/${data.list[0].weather[0].icon}.png">`;
-    // tempEl.textContent = temp;
-    // humidityEl.textContent = humidity;
-    // windEl.textContent = data.list[0].wind.speed;
+    temp.textContent = temp;
+    humidity.textContent = humidity;
+    wind.textContent = data.list[0].wind.speed;
 }
 //step 3:
 // WHEN I view future weather conditions for that city
@@ -94,9 +92,9 @@ let displayFutureWeather = (data) => {
         const {temp, humidity} = data.list[i].main;
 
         forecastEl.textContent = `(${new Date(data.list[i].dt*1000).toDateString()})`;
-       tempForeEl.textContent = temp;
-       humidityForeEl.textContent = humidity;
-       windForeEl.textContent = data.list[i].wind.speed;
+       document.getElementById('temp').textContent = temp;
+       document.getElementById('humidity').textContent = humidity;
+       document.getElementById('wind').textContent = data.list[i].wind.speed;
     }
 
 };
@@ -107,7 +105,6 @@ let saveCity = () => {
 };
 
 document.getElementById('search-form').onclick = searchCityForm;
-
 
 
 

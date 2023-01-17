@@ -11,11 +11,6 @@
     height: inherit;
 }
 
-/* #current-weather.border-padding.current-future.border.border-primary.rounded {
- 
-
-} */
-
 .display-4 {
     font-weight: 400;
 }
@@ -55,17 +50,24 @@ body {
 }
 
 
-/* 5 day forecast cards */
-.forecast {
-    width: 105px;
-    height: 150px;
+/* future weather conditions container */
+div.forecast.col-12.col-md-2.row {
+    width: 200px;
+    height: px;
     float: left;
     margin-right: 15px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     font-size: 15px;
-    background-color: #618ee2;
-    color: #e0dddd;
+    background-color: #3674e6;
+    color: #2577db;
 }
+
+div.card {
+
+    text-align: left;
+}
+
+
 
 .forecast-icon {
     margin-top: 5px;

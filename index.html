@@ -6,68 +6,79 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="assets/style.css">
     <title>Weather</title>
 </head>
 
 <body>
+    <!-- App title -->
     <header>
-        <h1 class="title">Weather Dashboard</h1>
+        <h1 class="text-white bg-dark text-center" id="title">Weather Dashboard</h1>
     </header>
 
+    <!-- Searh form -->
     <main class="row">
-        <div class=" search-area col-12 col-md-4">
+        <div class="col-3 border border-info rounded">
             <h3 class="search">
                 Search for a City:
             </h3>
-            <form id="search-form" class="form col-12">
-                <input type="text" name="city" id="city-name" class="form-input col-12 m-3">
-                <button class="btn col-12 btn-primary d-flex" type="submit">Search</button>
+            <form class="form col-12">
+                <input type="text" name="city" id="city-name" class="form-input col-12 m-2 d-flex">
+                <button class="btn col-12 btn-dark d-flex" type="submit" id="search-form">Search</button>
             </form>
         </div>
+
+        <!-- current weather container -->
         <div class="weather-forecast card col-12 col-md-8">
-        <div class=" ">
-            <div id="curweather-container" class="current-weather justify-content-center">
-                <div class="location">
-                <h2 class="current"><span class="current-city m-1"></span></h2>
-                <span class="icon"></span>
+            <div class=" ">
+                <div id="currentweather-container" class="current-weather justify-content-center">
+                    <div class="location">
+                        <h2 class="current"><span class="current-city m-1"></span></h2>
+                        <span class="icon"></span>
+                    </div>
+
+
+                    <div class="content row m-4">
+                        <span class="current-title">Tempurature:</span>
+                        <h4 class="temp m-1" id="temp"></h4><span class="units m-1"></span>F
+                    </div>
+
+                    <div class="content row m-4">
+                        <span class="current-title">Humidity:</span>
+                        <h4 class="humidity m-1" id="humidity"></h4><span class="units m-1"></span>%
+                    </div>
+
+                    <div class="content row m-4">
+                        <span class="current-title">Wind:</span>
+                        <h4 class="wind m-1"></h4><span class="units m-1" id="wind"></span>MPH
+                    </div>
+
+                </div>
             </div>
 
-                <div class="content row m-4">
-                    <span class="current-title">Tempurature:</span>
-                    <h4 class="temp m-1"></h4><span class="units m-1">F</span>
+
+            <!-- future weather Container -->
+            <div class="forecast col-12 col-md-2 row ">
+                <div class="card ">
+                    <div class="date">
+                        <h5 class="date-future"></h5>
+                    </div>
+                    <div class="day1-weather">
+                        <span class="forecast-title">Tempurature:</span>
+                        <h6 class="futuretemp-forecast"></h6><span class="units m-1"></span>
+
+                        <span class="forecast-title">Wind:</span>
+                        <h6 class="wind-forecast"></h6><span class="units m-1">MPH</span>
+
+                        <span class="forecast-title">Humidity:</span>
+                        <h6 class="humidity-forecast"></h6><span class="units m-1">%</span>
+                    </div>
                 </div>
-                <div class="content row m-4">
-                    <span class="current-title">Humidity:</span>
-                    <h4 class="humidity m-1"></h4><span class="units m-1">%</span>
-                </div>
-                <div class="content row m-4">
-                    <span class="current-title">Wind:</span>
-                    <h4 class="wind m-1"></h4><span class="units m-1">MPH</span>
-                </div>
+
             </div>
         </div>
-
-        <div class="forecast col-12 col-md-2 row">
-            <div class="card ">
-                <div class="date">
-                    <h5 class="date-i"></h5>
-                </div>
-                <div class="day1-weather">
-                    <span class="forecast-title">Tempurature: </span><h6 class="temp-forecast"></h6><span class="units m-1">F</span>
-                    <span class="forecast-title">Wind: </span><h6 class="wind-forecast"></h6><span class="units m-1">MPH</span>
-                    <span class="forecast-title">Humidity: </span><h6 class="humidity-forecast"></h6><span class="units m-1">%</span>
-                </div>
-            </div>
-
-        </div>
-    </div>
     </main>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery-ui-touch-punch@0.2.3/jquery.ui.touch-punch.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
     <script src="assets/script.js"></script>
 </body>
 
