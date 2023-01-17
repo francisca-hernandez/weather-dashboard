@@ -29,7 +29,7 @@ var APIKey =  "f64f9e2d4fda40afd330c539b14a2d45"
 const searchCityForm = (event) => {
     event.preventDefault();
     var cityName = userInput.value.trim();
-
+    console.log(cityName);
     if (cityName) {
         userInput.value = "";
         var apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&limit=1&appid=${APIKey}`;
