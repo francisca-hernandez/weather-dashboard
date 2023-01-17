@@ -18,7 +18,7 @@ const currentCity = document.querySelector('.current-city')
 const forecastEl = document.querySelector('.date-i')
 
 // const API_Key = 'e045f64f4cd0813aba91c0138b34adad'
-var APIKey = '3124a0b815fd42bc0bf779711fb207c0'
+var APIKey =  "f64f9e2d4fda40afd330c539b14a2d45"
 
 
 // // GIVEN a weather dashboard with form inputs
@@ -38,8 +38,7 @@ const searchCityForm = (event) => {
         .then(data => {
             console.log(data)
 
-            let { lat, lon } = data;
-        
+            let { lat, lon } = data.coord;
 
             let url = `http://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&units=imperial&appid=${APIKey}`;
 
@@ -48,26 +47,27 @@ const searchCityForm = (event) => {
             })
 
         
-                .then(data => {
-                    let forecast = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${APIKey}`;
-                    fetch(forecast).then(response => {
-                        return response.json();
+            .then(data => {
+                let forecast = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${APIKey}`;
+                fetch(forecast).then(response => {
+                    return response.json();
+                })
+                    .then(data => {
+                        d = data;
+                        displayCurrentWeather(data);
+                        displayFutureWeather(data);
+                     
                     })
-                        .then(data => {
-                            d = data;
-                            displayCurrentWeather(data);
-                            displayFutureWeather(data);
-                         
-                        })
-                    
-                });
+                
+            });
 
-        });
-        
-    } else {
-        alert("Please enter a City Name")
-    }
+    });
+    
+} else {
+    alert("Please enter a City Name")
+}
 };
+
 
     // // step 2:
 // // WHEN I view current weather conditions for that city
@@ -106,7 +106,7 @@ let saveCity = () => {
     localStorage.setItem('city', JSON.stringify(cities));
 };
 
-// searchForm("submit", searchCityForm);
+document.getElementById('search-form').onclick = searchCityForm;
 
 
 
