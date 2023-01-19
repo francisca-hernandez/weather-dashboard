@@ -19,10 +19,10 @@
 * localStorage
 
 ## Link
-https://github.com/francisca-hernandez/weather-dashboard.git
+https://francisca-hernandez.github.io/weather-dashboard/
 
 ##Screenshot
-![](/assets/Screenshot%202022-11-08%20101045.png)
+![Weather app showing Dallas,Tx current weather](/assets/weatherscreenshot.png)
 
 
 

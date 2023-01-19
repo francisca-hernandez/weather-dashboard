@@ -11,7 +11,9 @@ let humidity = document.querySelector(".humidity")
 let wind = document.querySelector(".wind")
 let iconEl = document.querySelector('.icon')
 
-const forecastEl = document.querySelector('.date-future')
+//future forcast variables
+const forecast = document.querySelector('.date-future')
+
 
 //API Key Variable
 //var APIKey = '3124a0b815fd42bc0bf779711fb207c0'
@@ -63,7 +65,7 @@ const searchCityForm = (event) => {
         });
         
     } else {
-        alert("Please enter a City Name")
+        alert("Please enter a valid city Name")
     }
 };
 
@@ -76,7 +78,7 @@ let displayCurrentWeather = (data) => {
     const { temp, humidity } = data.list[0].main;
     // set DOM elements from API
     currentCity.textContent = `${data.city.name} (${new Date(data.list[0].dt*1000).toDateString()})`;
-    currentCity.innerHTML += `<img src="http://openweathermap.org/img/w/${data.list[0].weather[0].icon}.png">`;
+    currentCity.innerHTML += `<img src="http://openweathermap.org/img/w/${data.list[0].weather[0].icon}.png">`; 
     temp.textContent = temp;
     humidity.textContent = humidity;
     wind.textContent = data.list[0].wind.speed;
@@ -85,13 +87,13 @@ let displayCurrentWeather = (data) => {
 // WHEN I view future weather conditions for that city
 // THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, the wind speed, and the humidity
 
-
+//still working on future wather to appear
 let displayFutureWeather = (data) => {
 
     for (let i = 7; i < data.list.length; i=i+7) {
         const {temp, humidity} = data.list[i].main;
 
-        forecastEl.textContent = `(${new Date(data.list[i].dt*1000).toDateString()})`;
+        forecast.textContent = `(${new Date(data.list[i].dt*1000).toDateString()})`;
        document.getElementById('temp').textContent = temp;
        document.getElementById('humidity').textContent = humidity;
        document.getElementById('wind').textContent = data.list[i].wind.speed;
@@ -101,13 +103,8 @@ let displayFutureWeather = (data) => {
 
 //save to localStorage
 let saveCity = () => {
-    localStorage.setItem('city', JSON.stringify(cities));
+    localStorage.setItem('city-name', JSON.stringify(cities));
 };
 
 document.getElementById('search-form').onclick = searchCityForm;
-
-
-
-
-
 
